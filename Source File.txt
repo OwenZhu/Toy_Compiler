@@ -1,3 +1,4 @@
+// THIS IS AN SOURCE FILE
 #include <iostream>
 using namespace std;
 int main()
@@ -5,10 +6,9 @@ int main()
 	int a,b,c;
 	a=10;
 	b=23;
-	c=a+b;
+	c=a       +b;
 	cout<<"a+b=";
 	cout<<c;
 	cout<<endl;
 	return 0;
 }
-//¼ÆËã10+23µÄÖµ

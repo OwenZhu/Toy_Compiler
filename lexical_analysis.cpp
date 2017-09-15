@@ -3,47 +3,43 @@
 #include <string>
 using namespace std;
 
-void preprocess(string &str)            //preprocess function
-{
+//preprocess function
+void preprocess(string &str){
+
 	char *t,*it;
 	int num;
-	for(t = &str[0];*t != '\0';t ++)
-	{
-		if(*t == ' ')
-		{
+
+	//replace whitespaces, comments and tabs with " "
+	for(t = &str[0]; *t != '\0'; t ++){
+		if(*t == ' '){
 			it = t;
 			it ++;
-			if(*it == ' ')
-			{
-				for(num = 1;*it ==' ';it ++)
-				{
+			if(*it == ' '){
+				for(num = 1; *it ==' '; it ++){
 					num ++;
 				}
-				str.replace(t,t + num," ");
+				str.replace(t, t + num, " ");
 			}
 		}
-		else if(*t == '/')
-		{
+		else if(*t == '/'){
 			it = t;
 			it ++;
-			if(*it == '/')
-			{
-				for(num = 1;*it !='\0';it ++)
-				{
+			if(*it == '/'){
+				for(num = 1;*it !='\0';it ++){
 					num ++;
 				}
 				str.replace(t,t + num,"");
 			}
 		}
-		else if(*t == '\t')
-		{
+		else if(*t == '\t'){
 			str.replace(t,t + 1,"");
 			t --;
 		}
 	}
 }
 
-void operate(string str)	//??ȡ??????????ո??ֹ
+//
+void analysis(string str)
 {
 	char *t,*it;
 	string s;
@@ -138,7 +134,7 @@ void operate(string str)	//??ȡ??????????ո??ֹ
 				cout<<"Constant --> ";
 			t = it - 1;
 		}
-		else if(*t == 34)
+		else if(*t == "\"")	
 		{
 			for(it = t + 1;*it != 34;it ++)
 			{
@@ -148,7 +144,7 @@ void operate(string str)	//??ȡ??????????ո??ֹ
 			cout<<" string --> ";
 			t = it;
 		}
-		else if(*t == 39)
+		else if(*t == '\'')
 		{
 			for(it = t + 1;*it != 39;it ++)
 			{
@@ -193,7 +189,7 @@ int main()
 			s = s + *t;
 		}
 		if(*t == ' ')
-			operate(s);
+			analysis(s);
 	}
 	cout<<endl;
 	fin.close(); //?ر?ļ?
