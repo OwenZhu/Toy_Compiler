@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-void preoperate(string &str)            //预处理函数
+void preprocess(string &str)            //preprocess function
 {
 	char *t,*it;
 	int num;
@@ -43,7 +43,7 @@ void preoperate(string &str)            //预处理函数
 	}
 }
 
-void operate(string str)	//读取字符串，到空格停止
+void operate(string str)	//??取??????????崭??止
 {
 	char *t,*it;
 	string s;
@@ -173,18 +173,18 @@ int main()
 	fin.open("Source File.txt",ios::in);
 	if(fin == NULL)
 	{
-		cout<<"打开文件失败！"<<endl;
+		cout<<"??募?失?埽?"<<endl;
 		return -1;
 	}
-	cout<<"预处理结果为:"<<endl;
+	cout<<"预?????为:"<<endl;
 	while(getline(fin,str))
 	{
-		preoperate(str);
+		preprocess(str);
 		cout<<str<<endl;
 		source = source + str;
 	}
 	source += " ";
-	cout<<"词法分析结果为：\n";
+	cout<<"?史??????为??\n";
 	for(t = &source[0];*t != '\0';t ++)
 	{
 		s = "";
@@ -196,7 +196,7 @@ int main()
 			operate(s);
 	}
 	cout<<endl;
-	fin.close(); //关闭文件
+	fin.close(); //?乇?募?
 	system("pause");
 	return 0;
 }
