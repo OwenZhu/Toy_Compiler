@@ -44,7 +44,7 @@
 		02171D3520C68A6E00FDB2EE = {
 			isa = PBXGroup;
 			children = (
-				02171D4020C68A6E00FDB2EE /* Toy-Compiler */,
+				02171D4020C68A6E00FDB2EE /* src */,
 				02171D3F20C68A6E00FDB2EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,14 +57,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		02171D4020C68A6E00FDB2EE /* Toy-Compiler */ = {
+		02171D4020C68A6E00FDB2EE /* src */ = {
 			isa = PBXGroup;
 			children = (
 				02171D4120C68A6E00FDB2EE /* main.cpp */,
 				02171D4820C698A000FDB2EE /* lex_parser.cpp */,
 				02171D4920C698A000FDB2EE /* lex_parser.hpp */,
 			);
-			path = "Toy-Compiler";
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
