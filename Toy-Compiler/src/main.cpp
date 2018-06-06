@@ -27,9 +27,8 @@ int main(int argc, const char * argv[]) {
     string raw_text, line;
     while(getline(fin, line))
     {
-        LexParser::trim(line);
         LexParser::pre_process(line);
-        cout << line << endl;
+        //cout << line << endl;
         raw_text += line;
     }
     cout << "Read file successfully!" << endl;
@@ -48,6 +47,5 @@ int main(int argc, const char * argv[]) {
      */
     
     fin.close();
-    system("pause");
     return 0;
 }
