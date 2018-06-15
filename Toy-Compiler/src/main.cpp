@@ -16,19 +16,19 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
     string file_name = "source_file.txt";
-    ifstream fin;
-    
-    fin.open(file_name, ios::in);
-    if (!fin.is_open()){
+    ifstream infile(file_name);
+    if (!infile){
         cerr << "Cannot open " << file_name << endl;
         return 0;
     }
     
     string raw_text, line;
-    while(getline(fin, line))
+    while(getline(infile, line))
     {
-        LexParser::pre_process(line);
-        //cout << line << endl;
+        if(!LexParser::pre_process(line)){
+            cerr << "Syntax Error" << endl;
+            return 0;
+        }
         raw_text += line;
     }
     cout << "Read file successfully!" << endl;
@@ -46,6 +46,6 @@ int main(int argc, const char * argv[]) {
      }
      */
     
-    fin.close();
+    infile.close();
     return 0;
 }

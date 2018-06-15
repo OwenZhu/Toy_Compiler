@@ -10,7 +10,7 @@
 
 void LexParser::trim(std::string& str){
     size_t first = str.find_first_not_of(" \n\r\t");
-    size_t last = str.find_last_not_of(" \n\r\t");
+    size_t last = str.find_last_not_of(" \n\r\t;");
     str = str.substr(first, (last-first + 1));
 }
 
@@ -28,48 +28,21 @@ std::vector<std::string> LexParser::split(std::string s, char delim){
 }
 
 
-void LexParser::pre_process(std::string& line){
+bool LexParser::pre_process(std::string& line){
     std::vector<std::string> str_vector;
     LexParser::trim(line);
+    
     str_vector = LexParser::split(line, ' ');
-    for (auto i = str_vector.begin(); i != str_vector.end(); ++i){
-        std::cout << *i << " --> ";
+
+    for (auto token = str_vector.begin(); token != str_vector.end(); token++){
+        // get rid of comments
+        if(*token == "//"){
+            break;
+        }
+        std::cout << *token << " --> ";
     }
     std::cout << std::endl;
-    
-    /*
-     
-    char *t, *it;
-    int num;
-     
-    //replace whitespaces, comments and tabs with " "
-    for(t = &str[0]; *t != '\0'; t ++){
-        if(*t == ' '){
-            it = t;
-            it ++;
-            if(*it == ' '){
-                for(num = 1; *it ==' '; it ++){
-                    num ++;
-                }
-                str.replace(&t, &t + num, " ");
-            }
-        }
-        else if(*t == '/'){
-            it = t;
-            it ++;
-            if(*it == '/'){
-                for(num = 1;*it !='\0';it ++){
-                    num ++;
-                }
-                str.replace(&t, &t + num,"");
-            }
-        }
-        else if(*t == '\t'){
-            str.replace(t,t + 1,"");
-            t --;
-        }
-    }
-     */
+    return true;
 }
 
 void LexParser::parse(std::string& str){

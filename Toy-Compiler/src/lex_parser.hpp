@@ -31,6 +31,6 @@ class LexParser{
 public:
     static std::vector<std::string> split(std::string s, char delim);
     static void trim(std::string& s);
-    static void pre_process(std::string& s);
+    static bool pre_process(std::string& s);
     static void parse(std::string& str);
 };
