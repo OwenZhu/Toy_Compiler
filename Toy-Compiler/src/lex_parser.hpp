@@ -29,11 +29,9 @@ static std::string keywords[50] = {
     "default", "sizeof", "return", "true", "false" };
 
 class LexParser: public Parser{
-    
+
 public:
     LexParser();
-    static std::vector<std::string> split(std::string s, char delim);
-    static void trim(std::string& s);
     static bool pre_process(std::string& s);
     static void parse(std::string& str);
 };

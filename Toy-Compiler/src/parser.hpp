@@ -12,16 +12,14 @@
 #include <stdio.h>
 #include <string>
 
-using namespace std;
-
 #endif /* parser_hpp */
 
 class ParserDef{
 public:
     ParserDef(): type_("lex"){};
-    ParserDef(string type_);
+    ParserDef(std::string type_);
 private:
-    string type_;
+    std::string type_;
 };
 
 class Parser{

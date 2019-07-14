@@ -8,25 +8,6 @@
 
 #include "lex_parser.hpp"
 
-void LexParser::trim(std::string& str){
-    size_t first = str.find_first_not_of(" \n\r\t");
-    size_t last = str.find_last_not_of(" \n\r\t;");
-    str = str.substr(first, (last-first + 1));
-}
-
-std::vector<std::string> LexParser::split(std::string s, char delim){
-    
-    std::stringstream ss(s);
-    std::string item;
-    std::vector<std::string> tokens;
-    while (getline(ss, item, delim)) {
-        if(item != ""){
-            tokens.push_back(item);
-        }
-    }
-    return tokens;
-}
-
 
 bool LexParser::pre_process(std::string& line){
     std::vector<std::string> str_vector;
