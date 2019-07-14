@@ -15,6 +15,8 @@
 #include <sstream>
 #include <iostream>
 
+#include "parser.hpp"
+
 #endif /* lex_parser_hpp */
 
 
@@ -26,9 +28,10 @@ static std::string keywords[50] = {
     "case", "for", "do", "while", "goto", "continue", "break",
     "default", "sizeof", "return", "true", "false" };
 
-class LexParser{
+class LexParser: public Parser{
     
 public:
+    LexParser();
     static std::vector<std::string> split(std::string s, char delim);
     static void trim(std::string& s);
     static bool pre_process(std::string& s);
