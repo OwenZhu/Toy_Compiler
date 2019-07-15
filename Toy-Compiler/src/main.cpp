@@ -11,26 +11,23 @@
 #include <fstream>
 
 #include "lex_parser.hpp"
-#include "helper.cpp"
+#include "helper.hpp"
 
 
 #define DATA_PATH "../res/sample.cpp"
 
 
 int main(int argc, const char * argv[]) {
-
     std::ifstream* infile = nullptr;
-    open_file(DATA_PATH, infile);
+    Helper::OpenFile(DATA_PATH, infile);
 
     std::string raw_text, line;
     while(std::getline(*infile, line)){
-        /*
-        if(!LexParser::pre_process(line)){
-            cerr << "Syntax Error" << endl;
-            return 0;
-        }
+        // if(!LexParser::preprocess(line)){
+        //     std::cerr << "Syntax Error" << std::endl;
+        //     return 0;
+        // }
         raw_text += line;
-        */
         std::cout << line << std::endl;
     }
     infile->close();

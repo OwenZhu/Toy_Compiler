@@ -6,18 +6,14 @@
 //  Copyright © 2018年 HanweiZhu. All rights reserved.
 //
 
-#ifndef lex_parser_hpp
-#define lex_parser_hpp
+#pragma once
 
 #include <stdio.h>
 #include <string>
-#include <vector>
-#include <sstream>
 #include <iostream>
 
 #include "parser.hpp"
-
-#endif /* lex_parser_hpp */
+#include "helper.hpp"
 
 
 // keywords in C
@@ -26,12 +22,13 @@ static std::string keywords[50] = {
     "struct", "union", "enum", "typedef", "const", "unsigned",
     "signed", "extern", "static", "void", "if", "else", "switch",
     "case", "for", "do", "while", "goto", "continue", "break",
-    "default", "sizeof", "return", "true", "false" };
+    "default", "sizeof", "return", "true", "false"
+};
 
 class LexParser: public Parser{
 
 public:
     LexParser();
-    static bool pre_process(std::string& s);
+    static bool preprocess(std::string& s);
     static void parse(std::string& str);
 };

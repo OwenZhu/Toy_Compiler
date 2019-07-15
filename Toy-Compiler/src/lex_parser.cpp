@@ -9,11 +9,11 @@
 #include "lex_parser.hpp"
 
 
-bool LexParser::pre_process(std::string& line){
+bool LexParser::preprocess(std::string& line){
     std::vector<std::string> str_vector;
-    LexParser::trim(line);
+    trim(line);
     
-    str_vector = LexParser::split(line, ' ');
+    str_vector = split(line, ' ');
 
     for (auto token = str_vector.begin(); token != str_vector.end(); token++){
         // get rid of comments
