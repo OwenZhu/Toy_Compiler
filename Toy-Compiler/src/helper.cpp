@@ -14,31 +14,35 @@
 
 #include "helper.hpp"
 
-void Helper::OpenFile(std::string const file_name, std::ifstream*& infile){
+void Helper::OpenFile(std::string const file_name, std::ifstream *&infile)
+{
     infile = new std::ifstream;
     infile->open(file_name);
-    if (!infile){
+    if (!infile)
+    {
         std::cerr << "Cannot open " << file_name << std::endl;
     }
 }
 
+std::vector<std::string> Helper::split(std::string s, char delim)
+{
 
-std::vector<std::string> Helper::split(std::string s, char delim){
-    
     std::stringstream ss(s);
     std::string item;
     std::vector<std::string> tokens;
-    while (std::getline(ss, item, delim)) {
-        if(item != ""){
+    while (std::getline(ss, item, delim))
+    {
+        if (item != "")
+        {
             tokens.push_back(item);
         }
     }
     return tokens;
 }
 
-
-void Helper::trim(std::string& str){
+void Helper::trim(std::string &str)
+{
     size_t first = str.find_first_not_of(" \n\r\t");
     size_t last = str.find_last_not_of(" \n\r\t;");
-    str = str.substr(first, (last-first + 1));
+    str = str.substr(first, (last - first + 1));
 }

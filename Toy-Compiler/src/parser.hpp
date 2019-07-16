@@ -14,15 +14,18 @@
 
 #endif /* parser_hpp */
 
-class ParserDef{
+class ParserDef
+{
 public:
-    ParserDef(): type_("lex"){};
+    ParserDef() : type_("lex"){};
     ParserDef(std::string type_);
+
 private:
     std::string type_;
 };
 
-class Parser{
+class Parser
+{
 public:
     Parser(const ParserDef &parser_def);
     virtual void parse() = 0;

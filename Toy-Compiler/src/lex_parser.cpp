@@ -7,26 +7,31 @@
 //
 
 #include "lex_parser.hpp"
+#include "helper.hpp"
 
-
-bool LexParser::preprocess(std::string& line){
+bool LexParser::tokenize(std::string &line)
+{
     std::vector<std::string> str_vector;
-    trim(line);
-    
-    str_vector = split(line, ' ');
+    Helper::trim(line);
 
-    for (auto token = str_vector.begin(); token != str_vector.end(); token++){
+    str_vector = Helper::split(line, ' ');
+
+    for (auto token = str_vector.begin(); token != str_vector.end(); token++)
+    {
         // get rid of comments
-        if(*token == "//"){
+        if (*token == "//")
+        {
             break;
         }
-        std::cout << *token << " --> ";
+        Helper::trim(*token);
+        std::cout << "[" << *token << "]";
     }
     std::cout << std::endl;
     return true;
 }
 
-void LexParser::parse(std::string& str){
+void LexParser::parse(std::string &str)
+{
     /*
     char *t,*it;
     string s;

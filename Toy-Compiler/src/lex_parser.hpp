@@ -15,20 +15,19 @@
 #include "parser.hpp"
 #include "helper.hpp"
 
-
 // keywords in C
 static std::string keywords[50] = {
     "short", "int", "long", "float", "double", "char",
     "struct", "union", "enum", "typedef", "const", "unsigned",
     "signed", "extern", "static", "void", "if", "else", "switch",
     "case", "for", "do", "while", "goto", "continue", "break",
-    "default", "sizeof", "return", "true", "false"
-};
+    "default", "sizeof", "return", "true", "false"};
 
-class LexParser: public Parser{
+class LexParser : public Parser
+{
 
 public:
     LexParser();
-    static bool preprocess(std::string& s);
-    static void parse(std::string& str);
+    static bool tokenize(std::string &s);
+    static void parse(std::string &str);
 };

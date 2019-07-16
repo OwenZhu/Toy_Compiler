@@ -13,27 +13,26 @@
 #include "lex_parser.hpp"
 #include "helper.hpp"
 
+#define DATA_PATH "./res/sample.cpp"
 
-#define DATA_PATH "../res/sample.cpp"
-
-
-int main(int argc, const char * argv[]) {
-    std::ifstream* infile = nullptr;
+int main(int argc, const char *argv[])
+{
+    std::ifstream *infile = nullptr;
     Helper::OpenFile(DATA_PATH, infile);
 
     std::string raw_text, line;
-    while(std::getline(*infile, line)){
-        // if(!LexParser::preprocess(line)){
-        //     std::cerr << "Syntax Error" << std::endl;
-        //     return 0;
-        // }
+    while (std::getline(*infile, line))
+    {
+        if (!LexParser::tokenize(line))
+        {
+            std::cerr << "Syntax Error" << std::endl;
+            return 0;
+        }
         raw_text += line;
-        std::cout << line << std::endl;
     }
     infile->close();
     std::cout << "Read file successfully!" << std::endl;
-    
-    
+
     /*
      for(t = &source[0];*t != '\0';t ++)
      {
@@ -46,7 +45,7 @@ int main(int argc, const char * argv[]) {
      analysis(s);
      }
      */
-    
+
     // infile->close();
     return 0;
 }
