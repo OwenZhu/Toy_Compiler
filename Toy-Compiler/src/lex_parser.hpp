@@ -17,8 +17,15 @@
 #include "parser.hpp"
 #include "helper.hpp"
 
+enum TOKEN_TYPE
+{
+    KEYWORD,
+    OPERATION,
+    COMMENT
+};
+
 // keywords in C
-const static std::set<std::string> KEYWORDS = {
+const static std::set<std::string> KEYWORD_LIST = {
     "short", "int", "long", "float", "double", "char",
     "struct", "union", "enum", "typedef", "const", "unsigned",
     "signed", "extern", "static", "void", "if", "else", "switch",
@@ -27,9 +34,11 @@ const static std::set<std::string> KEYWORDS = {
 
 class LexParser : public Parser
 {
+private:
+    static TOKEN_TYPE check_token_type(std::string);
 
 public:
     LexParser();
-    static std::vector<std::string> tokenize(std::string &);
+    static std::vector<std::string> tokenize(const std::string);
     static void parse(std::vector<std::string> &);
 };

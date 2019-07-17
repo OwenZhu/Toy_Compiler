@@ -6,42 +6,57 @@
 //  Copyright © 2018年 HanweiZhu. All rights reserved.
 //
 
+#include <algorithm>
+#include <iterator>
 #include "lex_parser.hpp"
 #include "helper.hpp"
 
-std::vector<std::string> LexParser::tokenize(std::string &line)
+std::vector<std::string> LexParser::tokenize(std::string line)
 {
-    std::vector<std::string> str_vector;
+    std::replace(std::begin(line), std::end(line), '\t', ' ');
     Helper::trim(line);
 
+    std::vector<std::string> str_vector;
     str_vector = Helper::split(line, ' ');
-
     for (auto token = str_vector.begin(); token != str_vector.end(); token++)
     {
-        // get rid of comments
-        if (*token == "//")
-        {
-            for (; token != str_vector.end();)
-            {
-                str_vector.pop_back();
-            }
-            break;
-        }
         Helper::trim(*token);
     }
     return str_vector;
+}
+
+TOKEN_TYPE LexParser::check_token_type(std::string str)
+{
+    TOKEN_TYPE type;
+    if (KEYWORD_LIST.find(str) != KEYWORD_LIST.end())
+        type = KEYWORD;
+    else if (str == "//")
+        type = COMMENT;
+    else
+        type = OPERATION;
+    return type;
 }
 
 void LexParser::parse(std::vector<std::string> &str_vector)
 {
     for (auto const &str : str_vector)
     {
-        if (KEYWORDS.find(str) != KEYWORDS.end())
+        TOKEN_TYPE type = check_token_type(str);
+        switch (type)
         {
-            std::cout << "[OPERATOR]";
+        case KEYWORD:
+            std::cout << "[KEYWORD " << *KEYWORD_LIST.find(str) << "]";
+            break;
+        case COMMENT:
+            for (; str != *str_vector.end();)
+            {
+                str_vector.pop_back();
+            }
+            break;
+        default:
+            std::cout << "[OPERATION " + str + "]";
+            break;
         }
-        else
-            std::cout << "[" << str << "]";
     }
     std::cout << std::endl;
     /*
