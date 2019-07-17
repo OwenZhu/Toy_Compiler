@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <vector>
+#include <set>
 
 #include "parser.hpp"
 #include "helper.hpp"
 
 // keywords in C
-static std::string keywords[50] = {
+const static std::set<std::string> KEYWORDS = {
     "short", "int", "long", "float", "double", "char",
     "struct", "union", "enum", "typedef", "const", "unsigned",
     "signed", "extern", "static", "void", "if", "else", "switch",
@@ -28,6 +30,6 @@ class LexParser : public Parser
 
 public:
     LexParser();
-    static bool tokenize(std::string &s);
-    static void parse(std::string &str);
+    static std::vector<std::string> tokenize(std::string &);
+    static void parse(std::vector<std::string> &);
 };

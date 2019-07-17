@@ -9,7 +9,7 @@
 #include "lex_parser.hpp"
 #include "helper.hpp"
 
-bool LexParser::tokenize(std::string &line)
+std::vector<std::string> LexParser::tokenize(std::string &line)
 {
     std::vector<std::string> str_vector;
     Helper::trim(line);
@@ -21,17 +21,29 @@ bool LexParser::tokenize(std::string &line)
         // get rid of comments
         if (*token == "//")
         {
+            for (; token != str_vector.end();)
+            {
+                str_vector.pop_back();
+            }
             break;
         }
         Helper::trim(*token);
-        std::cout << "[" << *token << "]";
     }
-    std::cout << std::endl;
-    return true;
+    return str_vector;
 }
 
-void LexParser::parse(std::string &str)
+void LexParser::parse(std::vector<std::string> &str_vector)
 {
+    for (auto const &str : str_vector)
+    {
+        if (KEYWORDS.find(str) != KEYWORDS.end())
+        {
+            std::cout << "[OPERATOR]";
+        }
+        else
+            std::cout << "[" << str << "]";
+    }
+    std::cout << std::endl;
     /*
     char *t,*it;
     string s;

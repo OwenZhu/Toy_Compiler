@@ -23,11 +23,8 @@ int main(int argc, const char *argv[])
     std::string raw_text, line;
     while (std::getline(*infile, line))
     {
-        if (!LexParser::tokenize(line))
-        {
-            std::cerr << "Syntax Error" << std::endl;
-            return 0;
-        }
+        std::vector<std::string> str_vector = LexParser::tokenize(line);
+        LexParser::parse(str_vector);
         raw_text += line;
     }
     infile->close();
